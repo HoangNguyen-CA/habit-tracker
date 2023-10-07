@@ -1,16 +1,49 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 
-import Timer from "@/components/Timer";
+import Countdown from "@/components/Countdown.container";
+import { Time } from "@/shared/types/time.interface";
+import { useState } from "react";
+import { CountdownMode } from "@/shared/types/countdownMode.interface";
 
 export default function App() {
-  const handleFinish = () => {
-    console.log("finish");
+  /* subject to change */
+  const maxTimePomodoro = {
+    hours: 0,
+    minutes: 25,
+    seconds: 0,
   };
+
+  const maxTimeBreak = {
+    hours: 0,
+    minutes: 5,
+    seconds: 0,
+  };
+
+  const nextStates = {
+    [CountdownMode.pomodoro]: () => {
+      setMode(CountdownMode.break);
+      setMaxtime({ ...maxTimeBreak });
+    },
+    [CountdownMode.break]: () => {
+      setMode(CountdownMode.pomodoro);
+      setMaxtime({ ...maxTimePomodoro });
+    },
+  };
+
+  /* end of change */
+
+  const [maxTime, setMaxtime] = useState<Time>(maxTimePomodoro);
+  const [mode, setMode] = useState<CountdownMode>(CountdownMode.pomodoro);
+
+  const handleFinish = () => {
+    nextStates[mode]();
+  };
+
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
-      <Timer seconds={10000} onFinish={handleFinish} />
+      <Countdown maxTime={maxTime} onFinish={handleFinish} />
       <StatusBar style="auto" />
     </View>
   );
