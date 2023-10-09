@@ -1,9 +1,7 @@
 import { CountdownState } from "@/shared/types/countdownState.interface";
 import { Time } from "@/shared/types/time.interface";
 import { timeToTimeString } from "@/shared/utils/time.util";
-import { View, Text } from "react-native";
-import { StyleSheet } from "react-native";
-
+import { View, Text, StyleSheet } from "react-native";
 interface Props {
   time: Time;
   countdownState: CountdownState;
