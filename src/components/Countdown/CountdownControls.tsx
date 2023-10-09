@@ -2,6 +2,7 @@ import { CountdownState } from "@/shared/types/countdownState.interface";
 import { Button } from "../UI";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
+import useTheme from "@/hooks/useTheme";
 
 interface Props {
   countdownState: CountdownState;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export default function CountdownControls(props: Props) {
+  const styles = useTheme(stylesheet);
   const stoppedControls = (
     <>
       <Button title="Start" onPress={props.onStart} />
@@ -50,14 +52,15 @@ export default function CountdownControls(props: Props) {
   return <View style={styles.container}>{controls}</View>;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "column",
-    gap: 10,
-  },
-  horizontalContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    gap: 10,
-  },
-});
+const stylesheet = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flexDirection: "column",
+      gap: 10,
+    },
+    horizontalContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      gap: 10,
+    },
+  });

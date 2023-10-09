@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, Pressable } from "react-native";
-import { stickyWorkers } from "../../../metro.config";
 
 interface Props {
   onPress: () => void;

@@ -2,12 +2,15 @@ import { CountdownState } from "@/shared/types/countdownState.interface";
 import { Time } from "@/shared/types/time.interface";
 import { timeToTimeString } from "@/shared/utils/time.util";
 import { View, Text, StyleSheet } from "react-native";
+import useTheme from "@/hooks/useTheme";
+
 interface Props {
   time: Time;
   countdownState: CountdownState;
 }
 
 export default function CountdownDisplay(props: Props) {
+  const styles = useTheme(stylesheet);
   const timeString = timeToTimeString(props.time);
 
   let displayString = `${timeString.minutes}:${timeString.seconds}`;
@@ -23,14 +26,16 @@ export default function CountdownDisplay(props: Props) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  countdownText: {
-    fontSize: 75,
-    fontWeight: "bold",
-  },
-});
+const stylesheet = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    countdownText: {
+      color: theme.text[500],
+      fontSize: 75,
+      fontWeight: "bold",
+    },
+  });

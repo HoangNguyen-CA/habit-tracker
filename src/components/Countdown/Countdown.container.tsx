@@ -17,8 +17,10 @@ interface Props {
 export default function Countdown(props: Props) {
   const maxTimeInSeconds = timeToSeconds(props.maxTime);
 
-  const { seconds, isRunning, startTimer, stopTimer, resetTimer } =
-    useCountdown(maxTimeInSeconds, props.onFinish);
+  const { seconds, startTimer, stopTimer, resetTimer } = useCountdown(
+    maxTimeInSeconds,
+    props.onFinish
+  );
 
   const [countdownState, setCountdownState] = useState(CountdownState.stopped);
 

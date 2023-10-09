@@ -5,9 +5,11 @@ import Countdown from "@/components/Countdown/Countdown.container";
 import { Time } from "@/shared/types/time.interface";
 import { useState } from "react";
 import { CountdownMode } from "@/shared/types/countdownMode.interface";
+import useTheme from "@/hooks/useTheme";
 
 export default function Home() {
-  /* subject to change */
+  const styles = useTheme(stylesheet);
+  /* below subject to change */
   const maxTimePomodoro = {
     hours: 0,
     minutes: 25,
@@ -31,7 +33,7 @@ export default function Home() {
     },
   };
 
-  /* end of change */
+  /* above subject to change */
 
   const [maxTime, setMaxtime] = useState<Time>(maxTimePomodoro);
   const [mode, setMode] = useState<CountdownMode>(CountdownMode.pomodoro);
@@ -43,16 +45,17 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Countdown maxTime={maxTime} onFinish={handleFinish} />
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+const stylesheet = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.primary[500],
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  });
