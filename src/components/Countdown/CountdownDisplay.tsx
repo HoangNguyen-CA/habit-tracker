@@ -1,8 +1,9 @@
 import { CountdownState } from "@/shared/types/countdownState.interface";
 import { Time } from "@/shared/types/time.interface";
 import { timeToTimeString } from "@/shared/utils/time.util";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import useTheme from "@/hooks/useTheme";
+import { Text } from "@/components/UI";
 
 interface Props {
   time: Time;
@@ -35,7 +36,7 @@ const stylesheet = (theme: Theme) =>
     },
     countdownText: {
       color: theme.text[500],
+      fontFamily: "RobotoMono_400Regular",
       fontSize: 75,
-      fontWeight: "bold",
     },
   });

@@ -56,6 +56,7 @@ const stylesheet = (theme: Theme) =>
       flex: 1,
       backgroundColor: theme.primary[500],
       alignItems: "center",
+      fontFamily: "RobotoMono_400Regular",
       justifyContent: "center",
     },
   });

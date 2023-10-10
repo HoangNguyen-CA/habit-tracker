@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, Pressable } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
+import { Text } from "@/components/UI";
 
 interface Props {
   onPress: () => void;
