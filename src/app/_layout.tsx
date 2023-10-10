@@ -30,17 +30,3 @@ export default function RootLayout() {
     </ThemeContextProvider>
   );
 }
-
-// import * as SplashScreen from "expo-splash-screen";
-// import { useCallback } from "react";
-// import { View } from "react-native";
-
-// const onLayoutRootView = useCallback(async () => {
-//   if (fontsLoaded || fontError) {
-//     await SplashScreen.hideAsync();
-//   }
-// }, [fontsLoaded, fontError]);
-
-// {
-//   fontsLoaded;
-// }

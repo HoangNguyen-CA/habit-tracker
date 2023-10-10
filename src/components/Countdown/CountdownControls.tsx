@@ -29,10 +29,7 @@ export default function CountdownControls(props: Props) {
   const pausedControls = (
     <>
       <Button title="Resume" onPress={props.onStart} />
-      <View style={styles.horizontalContainer}>
-        <Button title="Reset" onPress={props.onReset} />
-        <Button title="Skip" onPress={props.onSkip} />
-      </View>
+      <Button title="Reset" onPress={props.onReset} />
     </>
   );
 
@@ -56,11 +53,10 @@ const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     container: {
       flexDirection: "column",
-      gap: 10,
-    },
-    horizontalContainer: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      gap: 10,
+      gap: 20,
+      position: "absolute",
+      top: "110%",
+      left: 0,
+      right: 0,
     },
   });

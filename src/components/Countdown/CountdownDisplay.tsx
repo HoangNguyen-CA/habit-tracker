@@ -37,6 +37,6 @@ const stylesheet = (theme: Theme) =>
     countdownText: {
       color: theme.text[500],
       fontFamily: "RobotoMono_400Regular",
-      fontSize: 75,
+      fontSize: 85,
     },
   });

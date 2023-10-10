@@ -43,10 +43,10 @@ export default function Home() {
   };
 
   return (
-    <View style={styles.container}>
+    <>
       <Countdown maxTime={maxTime} onFinish={handleFinish} />
       <StatusBar style="light" />
-    </View>
+    </>
   );
 }
 
@@ -54,9 +54,5 @@ const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.primary[500],
-      alignItems: "center",
-      fontFamily: "RobotoMono_400Regular",
-      justifyContent: "center",
     },
   });
