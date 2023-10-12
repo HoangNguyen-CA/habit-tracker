@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Pressable,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+} from "react-native";
 import { Text } from "@/components/UI";
 import useTheme from "@/hooks/useTheme";
 
@@ -7,16 +13,18 @@ interface Props {
   onPress: () => void;
   title: string;
   variant?: "light" | "dark";
+  containerStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
 }
 
 export default function StyledButton({ variant = "light", ...props }: Props) {
   const styles = useTheme(stylesheet);
   return (
     <Pressable
-      style={[styles.core, styles[`variant-${variant}`]]}
+      style={[styles.core, styles[`variant-${variant}`], props.containerStyle]}
       onPress={props.onPress}
     >
-      <Text style={[styles.text, styles[`text-${variant}`]]}>
+      <Text style={[styles.text, styles[`text-${variant}`], props.textStyle]}>
         {props.title}
       </Text>
     </Pressable>

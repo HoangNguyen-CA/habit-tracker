@@ -24,6 +24,16 @@ export default function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="habits"
+        options={{
+          href: "/habits",
+          tabBarLabel: "Habits",
+          tabBarIcon: () => (
+            <Ionicons name="checkbox-outline" size={24} color="black" />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

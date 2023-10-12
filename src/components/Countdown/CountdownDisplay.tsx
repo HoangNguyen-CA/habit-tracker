@@ -35,7 +35,6 @@ const stylesheet = (theme: Theme) =>
       alignItems: "center",
     },
     countdownText: {
-      color: theme.text[500],
       fontFamily: "RobotoMono_400Regular",
       fontSize: 85,
     },

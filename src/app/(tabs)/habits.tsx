@@ -1,11 +1,10 @@
-import { View, StyleSheet } from "react-native";
-import { Text } from "@/components/UI";
+import { StyleSheet } from "react-native";
+import Habit from "@/components/Habit/Habit.container";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-export default function Tracker() {
+export default function Tasks() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Tracker Page</Text>
+      <Habit />
     </SafeAreaView>
   );
 }
