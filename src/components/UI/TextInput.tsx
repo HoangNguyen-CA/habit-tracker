@@ -18,11 +18,8 @@ const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     input: {
       fontFamily: "Roboto_400Regular",
-      color: theme.text[500],
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      borderColor: theme.text[500],
+      color: theme.text[100],
+      backgroundColor: theme.light[500],
       padding: 10,
     },
   });

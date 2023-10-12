@@ -15,22 +15,22 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="tracker"
-        options={{
-          href: "/tracker",
-          tabBarLabel: "Tracker",
-          tabBarIcon: () => (
-            <Ionicons name="calendar-outline" size={24} color="black" />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="habits"
         options={{
           href: "/habits",
           tabBarLabel: "Habits",
           tabBarIcon: () => (
             <Ionicons name="checkbox-outline" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="tracker"
+        options={{
+          href: "/tracker",
+          tabBarLabel: "Tracker",
+          tabBarIcon: () => (
+            <Ionicons name="calendar-outline" size={24} color="black" />
           ),
         }}
       />

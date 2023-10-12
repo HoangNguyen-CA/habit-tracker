@@ -6,6 +6,7 @@ import { Time } from "@/shared/types/time.interface";
 import { useState } from "react";
 import { CountdownMode } from "@/shared/types/countdownMode.interface";
 import useTheme from "@/hooks/useTheme";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Home() {
   const styles = useTheme(stylesheet);
@@ -43,10 +44,10 @@ export default function Home() {
   };
 
   return (
-    <>
+    <SafeAreaView style={styles.container}>
       <Countdown maxTime={maxTime} onFinish={handleFinish} />
       <StatusBar style="light" />
-    </>
+    </SafeAreaView>
   );
 }
 

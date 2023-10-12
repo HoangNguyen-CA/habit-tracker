@@ -11,7 +11,7 @@ import useTheme from "@/hooks/useTheme";
 
 interface Props {
   onPress: () => void;
-  title: string;
+  children: React.ReactNode;
   variant?: "light" | "dark";
   containerStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
@@ -25,7 +25,7 @@ export default function StyledButton({ variant = "light", ...props }: Props) {
       onPress={props.onPress}
     >
       <Text style={[styles.text, styles[`text-${variant}`], props.textStyle]}>
-        {props.title}
+        {props.children}
       </Text>
     </Pressable>
   );
@@ -41,6 +41,10 @@ const stylesheet = (theme: Theme) =>
       borderRadius: 4,
       elevation: 3,
       flexShrink: 1,
+      fontSize: 20,
+      lineHeight: 21,
+      fontWeight: "bold",
+      letterSpacing: 0.25,
     },
     "variant-light": {
       backgroundColor: theme.light[900],
@@ -52,11 +56,9 @@ const stylesheet = (theme: Theme) =>
       textTransform: "uppercase",
     },
     "text-light": {
-      fontSize: 20,
-      lineHeight: 21,
-      fontWeight: "bold",
-      letterSpacing: 0.25,
       color: theme.dark[300],
     },
-    "text-dark": {},
+    "text-dark": {
+      color: theme.light[300],
+    },
   });

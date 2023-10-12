@@ -16,20 +16,20 @@ export default function CountdownControls(props: Props) {
   const styles = useTheme(stylesheet);
   const stoppedControls = (
     <>
-      <Button title="Start" onPress={props.onStart} />
+      <Button onPress={props.onStart}>Start</Button>
     </>
   );
 
   const countingControls = (
     <>
-      <Button title="Pause" onPress={props.onPause} />
+      <Button onPress={props.onPause}>Pause</Button>
     </>
   );
 
   const pausedControls = (
     <>
-      <Button title="Resume" onPress={props.onStart} />
-      <Button title="Reset" onPress={props.onReset} />
+      <Button onPress={props.onStart}>Resume</Button>
+      <Button onPress={props.onReset}>Reset</Button>
     </>
   );
 
