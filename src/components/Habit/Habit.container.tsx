@@ -1,21 +1,46 @@
 import { useState } from "react";
-import { Habits } from "@/shared/types/habit.interface";
-import { View, FlatList, StyleSheet, ScrollView } from "react-native";
+import { Habits, Habit as HabitType } from "@/shared/types/habit.interface";
+import { View, FlatList, StyleSheet } from "react-native";
+
 import { TextInput, Button } from "../UI/";
 import HabitDisplay from "./HabitDisplay";
 import * as HabitService from "@/services/Habit.service";
 import useTheme from "@/hooks/useTheme";
 
+interface HabitOption extends HabitType {
+  showOptions: boolean;
+}
+
 export default function Habit() {
-  const [habits, setHabits] = useState<Habits>([]);
+  const [habits, setHabits] = useState<HabitOption[]>([]);
   const [habitInput, setHabitInput] = useState("");
 
   const handleCreateHabit = () => {
     if (habitInput === "") return;
 
-    const newHabit = HabitService.createHabit(habitInput);
+    const newHabit = {
+      showOptions: false,
+      ...HabitService.createHabit(habitInput),
+    };
     setHabits([...habits, newHabit]);
     setHabitInput("");
+  };
+
+  const handleShowOptions = (id: string) => {
+    setHabits(
+      habits.map((habit) => {
+        if (habit.id == id) return { ...habit, showOptions: true };
+        return { ...habit, showOptions: false };
+      })
+    );
+  };
+
+  const handleHideOptions = () => {
+    setHabits(
+      habits.map((habit) => {
+        return { ...habit, showOptions: false };
+      })
+    );
   };
 
   const handleDeleteHabit = (id: string) => {
@@ -44,6 +69,9 @@ export default function Habit() {
         data={habits}
         renderItem={({ item }) => (
           <HabitDisplay
+            optionsVisible={item.showOptions}
+            onShowOptions={() => handleShowOptions(item.id)}
+            onHideOptions={handleHideOptions}
             onDelete={() => handleDeleteHabit(item.id)}
             habit={item}
           />

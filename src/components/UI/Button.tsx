@@ -6,27 +6,40 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import { Text } from "@/components/UI";
+import Text from "@/components/UI/Text";
 import useTheme from "@/hooks/useTheme";
 
 interface Props {
   onPress: () => void;
   children: React.ReactNode;
+  custom?: boolean;
   variant?: "light" | "dark";
   containerStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
 }
 
-export default function StyledButton({ variant = "light", ...props }: Props) {
+export default function StyledButton({
+  variant = "light",
+  custom = false,
+  ...props
+}: Props) {
   const styles = useTheme(stylesheet);
+
+  let content = props.children;
+  if (!custom) {
+    content = (
+      <Text style={[styles.text, styles[`text-${variant}`], props.textStyle]}>
+        {props.children}
+      </Text>
+    );
+  }
+
   return (
     <Pressable
       style={[styles.core, styles[`variant-${variant}`], props.containerStyle]}
       onPress={props.onPress}
     >
-      <Text style={[styles.text, styles[`text-${variant}`], props.textStyle]}>
-        {props.children}
-      </Text>
+      {content}
     </Pressable>
   );
 }

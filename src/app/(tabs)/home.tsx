@@ -10,6 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Home() {
   const styles = useTheme(stylesheet);
+
   /* below subject to change */
   const maxTimePomodoro = {
     hours: 0,
