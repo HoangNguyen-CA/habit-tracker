@@ -1,6 +1,5 @@
 export interface Habit {
   description: string;
   id: string;
+  repetitions: number;
 }
-
-export type Habits = Habit[];

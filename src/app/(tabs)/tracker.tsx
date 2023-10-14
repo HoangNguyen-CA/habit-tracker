@@ -1,11 +1,11 @@
-import { View, StyleSheet } from "react-native";
-import { Text } from "@/components/UI";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import TrackerContainer from "@/components/Tracker/Tracker.container";
 
 export default function Tracker() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Tracker Page</Text>
+      <TrackerContainer />
     </SafeAreaView>
   );
 }

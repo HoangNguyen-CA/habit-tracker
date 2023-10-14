@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 
 import Countdown from "@/components/Countdown/Countdown.container";
 import { Time } from "@/shared/types/time.interface";
@@ -47,7 +46,6 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <Countdown maxTime={maxTime} onFinish={handleFinish} />
-      <StatusBar style="light" />
     </SafeAreaView>
   );
 }

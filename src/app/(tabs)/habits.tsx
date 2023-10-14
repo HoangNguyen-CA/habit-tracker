@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-import Habit from "@/components/Habit/Habit.container";
+import HabitContainer from "@/components/Habit/Habit.container";
 import { SafeAreaView } from "react-native-safe-area-context";
-export default function Tasks() {
+export default function Habit() {
   return (
     <SafeAreaView style={styles.container}>
-      <Habit />
+      <HabitContainer />
     </SafeAreaView>
   );
 }
