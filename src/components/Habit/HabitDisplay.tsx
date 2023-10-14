@@ -2,7 +2,7 @@ import { Habit } from "@/shared/types/habit.interface";
 import { View, StyleSheet } from "react-native";
 import { Text, Button, Modal, TextInput } from "../UI";
 import useTheme from "@/hooks/useTheme";
-import { useState } from "react";
+
 interface Props {
   habit: Habit;
   onShowOptions: () => void;

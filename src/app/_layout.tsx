@@ -1,4 +1,5 @@
 import { ThemeContextProvider } from "@/context/theme.context";
+import { HabitContextProvider } from "@/context/habit.context";
 import { Slot } from "expo-router";
 import {
   useFonts,
@@ -26,7 +27,9 @@ export default function RootLayout() {
 
   return (
     <ThemeContextProvider>
-      <Slot />
+      <HabitContextProvider>
+        <Slot />
+      </HabitContextProvider>
     </ThemeContextProvider>
   );
 }

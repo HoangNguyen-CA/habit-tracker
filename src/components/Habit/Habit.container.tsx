@@ -1,26 +1,24 @@
 import { useState } from "react";
-import { Habit as HabitType } from "@/shared/types/habit.interface";
 import { View, FlatList, StyleSheet } from "react-native";
+import { Habit as HabitType } from "@/shared/types/habit.interface";
 
 import { TextInput } from "../UI/";
 import HabitDisplay from "./HabitDisplay";
 import * as HabitService from "@/services/Habit.service";
 import useTheme from "@/hooks/useTheme";
+import useHabit from "@/hooks/useHabit";
+
 import HabitOptionsModal from "./HabitOptionsModal";
 
 export default function Habit() {
-  const [habits, setHabits] = useState<HabitType[]>([]);
+  const { habits, tryCreateHabit, tryDeleteHabit, tryRenameHabit } = useHabit();
   const [habitInput, setHabitInput] = useState("");
   const [selectedHabitOption, setSelectedHabitOption] =
     useState<HabitType | null>(null);
 
-  const handleCreateHabit = () => {
+  const handleCreateHabit = async () => {
     if (habitInput === "") return;
-
-    const newHabit = {
-      ...HabitService.createHabit(habitInput),
-    };
-    setHabits([...habits, newHabit]);
+    await tryCreateHabit(habitInput);
     setHabitInput("");
   };
 
@@ -32,21 +30,13 @@ export default function Habit() {
     setSelectedHabitOption(null);
   };
 
-  const handleRenameHabit = (id: string, description: string) => {
-    setHabits(
-      habits.map((habit) => {
-        if (habit.id == id) {
-          let renamedHabit = { ...habit, description };
-          setSelectedHabitOption(renamedHabit);
-          return renamedHabit;
-        }
-        return { ...habit };
-      })
-    );
+  const handleRenameHabit = async (id: string, description: string) => {
+    const renamedHabit = await tryRenameHabit(id, description);
+    setSelectedHabitOption(renamedHabit || null);
   };
 
-  const handleDeleteHabit = (id: string) => {
-    setHabits(habits.filter((habit) => habit.id !== id));
+  const handleDeleteHabit = async (id: string) => {
+    await tryDeleteHabit(id);
     setSelectedHabitOption(null);
   };
 
@@ -71,7 +61,7 @@ export default function Habit() {
             habit={item}
           />
         )}
-      ></FlatList>
+      />
       <HabitOptionsModal
         habit={selectedHabitOption}
         onDelete={handleDeleteHabit}
