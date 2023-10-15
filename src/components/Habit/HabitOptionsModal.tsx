@@ -1,10 +1,10 @@
-import useTheme from "@/hooks/useTheme";
-import { StyleSheet } from "react-native";
-import { useState } from "react";
-import { Habit } from "@/shared/types/habit.interface";
-import { Modal, Text, Button, TextInput } from "../UI";
+import useTheme from '@/hooks/useTheme';
+import { StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { Habit } from '@/shared/types/habit.interface';
+import { Modal, Text, Button, TextInput } from '../UI';
 
-const DELETE_PROMPT = "Delete";
+const DELETE_PROMPT = 'Delete';
 
 interface Props {
   habit: Habit | null;
@@ -18,8 +18,8 @@ export default function HabitOptionsModal(props: Props) {
 
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
-  const [editValue, setEditValue] = useState("");
-  const [deleteValue, setDeleteValue] = useState("");
+  const [editValue, setEditValue] = useState('');
+  const [deleteValue, setDeleteValue] = useState('');
 
   const handleEdit = () => {
     if (props.habit === null) return;
@@ -36,12 +36,12 @@ export default function HabitOptionsModal(props: Props) {
   };
 
   const handleEditClose = () => {
-    setEditValue("");
+    setEditValue('');
     setEditOpen(false);
   };
 
   const handleDeleteClose = () => {
-    setDeleteValue("");
+    setDeleteValue('');
     setDeleteOpen(false);
   };
 
@@ -49,25 +49,35 @@ export default function HabitOptionsModal(props: Props) {
 
   return (
     <Modal visible close={props.onHide} style={styles.modal}>
-      <Text variant="dark" style={styles.optionsHeader}>
+      <Text variant='dark' style={styles.optionsHeader}>
         Habit Options for '{props.habit.description}'
       </Text>
 
-      <Button onPress={() => setEditOpen(true)}>Edit name</Button>
-      <Button onPress={() => setDeleteOpen(true)}>Delete</Button>
-      <Button onPress={props.onHide}>Cancel</Button>
+      <Button
+        containerStyle={styles.optionButton}
+        onPress={() => setEditOpen(true)}
+      >
+        Edit name
+      </Button>
+      <Button
+        containerStyle={styles.optionButton}
+        onPress={() => setDeleteOpen(true)}
+      >
+        Delete
+      </Button>
+      <Button containerStyle={styles.optionButton} onPress={props.onHide}>
+        Cancel
+      </Button>
 
       <Modal
         visible={editOpen}
         style={styles.smallModal}
         close={handleEditClose}
       >
-        <Text variant="dark" style={styles.smallModalHeader}>
-          Edit Habit Name
-        </Text>
+        <Text style={styles.smallModalHeader}>Edit Habit Name</Text>
         <TextInput
           value={editValue}
-          placeholder="Habit Name"
+          label='New Name'
           onChangeText={(val) => setEditValue(val)}
           onSubmitEditing={handleEdit}
         />
@@ -78,12 +88,12 @@ export default function HabitOptionsModal(props: Props) {
         style={styles.smallModal}
         close={handleDeleteClose}
       >
-        <Text variant="dark" style={styles.smallModalHeader}>
+        <Text style={styles.smallModalHeader}>
           This action is permanent, type "{DELETE_PROMPT}" to confirm
         </Text>
         <TextInput
           value={deleteValue}
-          placeholder="Delete"
+          label={DELETE_PROMPT}
           onChangeText={(val) => setDeleteValue(val)}
           onSubmitEditing={handleDelete}
         />
@@ -99,17 +109,20 @@ const stylesheet = (theme: Theme) =>
     },
 
     modal: {
-      alignItems: "center",
-      justifyContent: "center",
+      alignItems: 'center',
+      justifyContent: 'center',
       gap: 15,
     },
 
+    optionButton: {
+      width: 200,
+    },
+
     smallModal: {
-      alignItems: "center",
-      width: "auto",
-      height: "auto",
-      maxWidth: "95%",
-      maxHeight: "95%",
+      width: '80%',
+      height: 'auto',
+      maxHeight: '95%',
+      backgroundColor: theme.secondary[500],
     },
 
     smallModalHeader: {

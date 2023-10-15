@@ -1,14 +1,14 @@
-import { Text as NativeText, StyleSheet } from "react-native";
-import useTheme from "@/hooks/useTheme";
+import { Text as NativeText, StyleSheet } from 'react-native';
+import useTheme from '@/hooks/useTheme';
 
 interface Props {
-  variant?: "light" | "dark";
-  size?: "body" | "h1";
+  variant?: 'light' | 'dark';
+  size?: 'body' | 'h1';
 }
 
 export default function Text({
-  variant = "light",
-  size = "body",
+  variant = 'light',
+  size = 'body',
   style,
   children,
   ...props
@@ -32,19 +32,19 @@ export default function Text({
 const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     base: {
-      fontFamily: "Roboto_400Regular",
+      fontFamily: 'Roboto_400Regular',
     },
-    "text-size-body": {
+    'text-size-body': {
       fontSize: 16,
     },
-    "text-size-h1": {
+    'text-size-h1': {
       fontSize: 32,
-      marginBottom: 10,
+      marginBottom: 5,
     },
-    "text-light": {
+    'text-light': {
       color: theme.text[500],
     },
-    "text-dark": {
+    'text-dark': {
       color: theme.text[100],
     },
   });

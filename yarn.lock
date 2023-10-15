@@ -2064,6 +2064,21 @@
   resolved "https://registry.npmjs.org/@types/qs/-/qs-6.9.8.tgz"
   integrity sha512-u95svzDlTysU5xecFNTgfFG5RUWu1A9P0VzgpcIiGZA9iraHOdSzcxMxQ55DyeRaGCSxQi7LxXDI4rzq/MYfdg==
 
+"@types/react-native-vector-icons@^6.4.5":
+  version "6.4.15"
+  resolved "https://registry.yarnpkg.com/@types/react-native-vector-icons/-/react-native-vector-icons-6.4.15.tgz#93cad672b6e5d4de2f8d48d8ace695586effede1"
+  integrity sha512-gmyVIANMFQXzpzejg4uMpYZ6KffrItkeb2F9LgcLnZz8RVrtbF8I3wbkRafHJoDJ2U0p8QiRui+BghD11ae8Gg==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "^0.70"
+
+"@types/react-native@^0.70":
+  version "0.70.15"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.70.15.tgz#82900eae7fe7100329e2b7a61d9c000805e564ae"
+  integrity sha512-wHrMQd65odOFbejFSDF7riocwLGEjkoJCF3GhH2a1vKqWbCExH361AZa/1GMG8gijAP86hkjF9gHZFHepEXaZA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-test-renderer@^18.0.1":
   version "18.0.1"
   resolved "https://registry.npmjs.org/@types/react-test-renderer/-/react-test-renderer-18.0.1.tgz"
@@ -5594,6 +5609,13 @@ react-native-screens@~3.22.0:
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
+
+react-native-textinput-effects@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/react-native-textinput-effects/-/react-native-textinput-effects-0.6.3.tgz#dcfb273d2b04235f308216d06a965ac1746a66f2"
+  integrity sha512-WGLKR0cshSRTS2+65WFfHmU26UHKoNQQzqe1H1agUSiO3WUJvKTLGZu6DMrwLko90tjuWt2RQsXINs6iFFe2mg==
+  dependencies:
+    "@types/react-native-vector-icons" "^6.4.5"
 
 react-native-uuid@^2.0.1:
   version "2.0.1"

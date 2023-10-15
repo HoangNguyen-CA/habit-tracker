@@ -1,9 +1,8 @@
-import { CountdownState } from "@/shared/types/countdownState.interface";
-import { Time } from "@/shared/types/time.interface";
-import { timeToTimeString, secondsToTime } from "@/shared/utils/time.util";
-import { View, StyleSheet } from "react-native";
-import useTheme from "@/hooks/useTheme";
-import { Text } from "@/components/UI";
+import { CountdownState } from '@/shared/types/countdownState.interface';
+import { timeToTimeString, secondsToTime } from '@/shared/utils/time.util';
+import { View, StyleSheet } from 'react-native';
+import useTheme from '@/hooks/useTheme';
+import { Text } from '@/components/UI';
 
 interface Props {
   seconds: number;
@@ -31,12 +30,12 @@ export default function CountdownDisplay(props: Props) {
 const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     container: {
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     countdownText: {
-      fontFamily: "RobotoMono_400Regular",
+      fontFamily: 'RobotoMono_400Regular',
       fontSize: 85,
     },
   });

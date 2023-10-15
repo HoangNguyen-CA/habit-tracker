@@ -1,25 +1,38 @@
-import { TextInput as NativeTextInput, StyleSheet } from "react-native";
-import useTheme from "@/hooks/useTheme";
+import { StyleSheet } from 'react-native';
+import useTheme from '@/hooks/useTheme';
+import { useContext } from 'react';
+import { ThemeContext } from '@/context/theme.context';
+import { Isao } from 'react-native-textinput-effects';
 
 export default function TextInput({
-  style,
-  children,
+  label,
   ...props
-}: $ElementProps<typeof NativeTextInput>) {
+}: $ElementProps<typeof Isao>) {
+  const { theme } = useContext(ThemeContext);
   const styles = useTheme(stylesheet);
   return (
-    <NativeTextInput style={[styles.input, style]} {...props}>
-      {children}
-    </NativeTextInput>
+    <Isao
+      label={label}
+      // this is applied as active border and label color
+      activeColor={theme.primary[700]}
+      // active border height
+      inputStyle={styles.input}
+      labelStyle={styles.label}
+      // this is applied as passive border and label color
+      passiveColor={theme.text[500]}
+      {...props}
+    />
   );
 }
 
 const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     input: {
-      fontFamily: "Roboto_400Regular",
-      color: theme.text[100],
-      backgroundColor: theme.light[500],
-      padding: 10,
+      fontFamily: 'Roboto_400Regular',
+      color: theme.text[500],
+    },
+    label: {
+      fontFamily: 'Roboto_400Regular',
+      color: theme.text[500],
     },
   });
