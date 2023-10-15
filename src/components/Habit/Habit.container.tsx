@@ -2,9 +2,8 @@ import { useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { Habit as HabitType } from "@/shared/types/habit.interface";
 
-import { TextInput } from "../UI/";
+import { TextInput, Text } from "../UI/";
 import HabitDisplay from "./HabitDisplay";
-import * as HabitService from "@/services/Habit.service";
 import useTheme from "@/hooks/useTheme";
 import useHabit from "@/hooks/useHabit";
 
@@ -44,6 +43,7 @@ export default function Habit() {
 
   return (
     <View style={styles.container}>
+      <Text size="h1">Manage Habits</Text>
       <View style={styles.createHabitContainer}>
         <TextInput
           style={styles.createHabitInput}
@@ -78,6 +78,7 @@ const stylesheet = (theme: Theme) =>
       flex: 1,
       justifyContent: "center",
       backgroundColor: theme.dark[500],
+      padding: 15,
     },
     createHabitContainer: {
       flexDirection: "row",

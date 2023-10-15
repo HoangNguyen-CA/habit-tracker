@@ -1,21 +1,22 @@
 import { CountdownState } from "@/shared/types/countdownState.interface";
 import { Time } from "@/shared/types/time.interface";
-import { timeToTimeString } from "@/shared/utils/time.util";
+import { timeToTimeString, secondsToTime } from "@/shared/utils/time.util";
 import { View, StyleSheet } from "react-native";
 import useTheme from "@/hooks/useTheme";
 import { Text } from "@/components/UI";
 
 interface Props {
-  time: Time;
+  seconds: number;
   countdownState: CountdownState;
 }
 
 export default function CountdownDisplay(props: Props) {
   const styles = useTheme(stylesheet);
-  const timeString = timeToTimeString(props.time);
+  const time = secondsToTime(props.seconds);
+  const timeString = timeToTimeString(time);
 
   let displayString = `${timeString.minutes}:${timeString.seconds}`;
-  if (props.time.hours > 0) {
+  if (time.hours > 0) {
     displayString = `${timeString.hours}:${displayString}`;
   }
   return (

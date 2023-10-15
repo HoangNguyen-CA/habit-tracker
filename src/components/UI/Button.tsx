@@ -69,9 +69,9 @@ const stylesheet = (theme: Theme) =>
       textTransform: "uppercase",
     },
     "text-light": {
-      color: theme.dark[300],
+      color: theme.text[100],
     },
     "text-dark": {
-      color: theme.light[300],
+      color: theme.text[500],
     },
   });

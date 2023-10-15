@@ -13,6 +13,7 @@ interface ContextValue {
   createHabit?: (description: string) => Promise<void>;
   renameHabit?: (id: string, description: string) => Promise<Habit | undefined>;
   deleteHabit?: (id: string) => Promise<void>;
+  incrementHabit?: (id: string) => Promise<Habit | undefined>;
 }
 
 export const HabitContext = createContext<ContextValue>({
@@ -69,9 +70,23 @@ export const HabitContextProvider = (props: { children?: React.ReactNode }) => {
     await saveHabitsToStorage(updatedHabits);
   };
 
+  const incrementHabit = async (id: string) => {
+    let updatedHabit: Habit | undefined;
+    const updatedHabits = habits.map((habit) => {
+      if (habit.id == id) {
+        updatedHabit = { ...habit, dates: [...habit.dates, Date.now()] };
+        return updatedHabit;
+      }
+      return { ...habit };
+    });
+
+    await saveHabitsToStorage(updatedHabits);
+    return updatedHabit;
+  };
+
   return (
     <HabitContext.Provider
-      value={{ habits, createHabit, renameHabit, deleteHabit }}
+      value={{ habits, createHabit, renameHabit, deleteHabit, incrementHabit }}
     >
       {props.children}
     </HabitContext.Provider>

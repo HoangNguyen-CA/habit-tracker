@@ -3,10 +3,12 @@ import useTheme from "@/hooks/useTheme";
 
 interface Props {
   variant?: "light" | "dark";
+  size?: "body" | "h1";
 }
 
 export default function Text({
   variant = "light",
+  size = "body",
   style,
   children,
   ...props
@@ -14,7 +16,12 @@ export default function Text({
   const styles = useTheme(stylesheet);
   return (
     <NativeText
-      style={[styles.base, styles[`text-${variant}`], style]}
+      style={[
+        styles.base,
+        styles[`text-size-${size}`],
+        styles[`text-${variant}`],
+        style,
+      ]}
       {...props}
     >
       {children}
@@ -26,6 +33,13 @@ const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     base: {
       fontFamily: "Roboto_400Regular",
+    },
+    "text-size-body": {
+      fontSize: 16,
+    },
+    "text-size-h1": {
+      fontSize: 32,
+      marginBottom: 10,
     },
     "text-light": {
       color: theme.text[500],

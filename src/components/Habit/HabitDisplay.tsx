@@ -25,7 +25,6 @@ const stylesheet = (theme: Theme) =>
       borderRadius: 4,
       flexDirection: "row",
       alignItems: "center",
-      borderWidth: 1,
     },
     text: {
       padding: 20,
