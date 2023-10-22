@@ -1,16 +1,18 @@
-import { View, StyleSheet } from 'react-native';
-import { useState } from 'react';
-import { timeToSeconds } from '@/shared/utils/time.util';
+import { View, StyleSheet } from "react-native";
+import { useState } from "react";
+import { timeToSeconds } from "@/shared/utils/time.util";
 
-import { CountdownState as CDState } from '@/shared/types/countdownState.interface';
-import { CountdownMode as CDMode } from '@/shared/types/countdownMode.interface';
+import { CountdownState as CDState } from "@/shared/types/countdownState.interface";
+import { CountdownMode as CDMode } from "@/shared/types/countdownMode.interface";
 
-import useCountdown from '@/hooks/useCountdown';
-import useTheme from '@/hooks/useTheme';
-import useHabit from '@/hooks/useHabit';
+import useCountdown from "@/hooks/useCountdown";
+import useTheme from "@/hooks/useTheme";
+import useHabit from "@/hooks/useHabit";
 
-import CountdownDisplay from './CountdownDisplay';
-import CountdownControls from './CountdownControls';
+import CountdownDisplay from "@/components/Countdown/CountdownDisplay";
+import CountdownControls from "@/components/Countdown/CountdownControls";
+import CountdownModeControls from "@/components/Countdown/CountdownModeControls";
+import CountdownHabitPicker from "@/components/Countdown/CountdownHabitPicker";
 
 const MAX_TIME_POMODORO = timeToSeconds({
   hours: 0,
@@ -28,8 +30,10 @@ export default function Countdown() {
   const [mode, setMode] = useState<CDMode>(CDMode.pomodoro);
   const [countdownState, setCountdownState] = useState(CDState.stopped);
   const { habits } = useHabit();
-  const [selectedHabitId, setSelectedHabitId] = useState<string>('');
+  const [selectedHabitId, setSelectedHabitId] = useState<string>("");
   const { tryIncrementHabit } = useHabit();
+
+  const maxTime = mode === CDMode.pomodoro ? MAX_TIME_POMODORO : MAX_TIME_BREAK;
 
   const handleSwitchMode = (mode: CDMode) => {
     setMode(mode);
@@ -62,7 +66,7 @@ export default function Countdown() {
   };
 
   const { seconds, startTimer, stopTimer, resetTimer } = useCountdown(
-    mode === CDMode.pomodoro ? MAX_TIME_POMODORO : MAX_TIME_BREAK,
+    maxTime,
     handleFinish
   );
 
@@ -73,23 +77,28 @@ export default function Countdown() {
       style={[
         styles.container,
         countdownState == CDState.counting
-          ? styles['container-running']
-          : styles['container-stopped'],
+          ? styles["container-running"]
+          : styles["container-stopped"],
       ]}
     >
       <View style={styles.innerContainer}>
-        <CountdownDisplay seconds={seconds} countdownState={countdownState} />
+        <CountdownModeControls cdMode={mode} switchMode={handleSwitchMode} />
+        <CountdownDisplay
+          maxTime={maxTime}
+          seconds={seconds}
+          countdownState={countdownState}
+        />
         <CountdownControls
           countdownState={countdownState}
-          cdMode={mode}
           onStart={handleStart}
           onPause={handlePause}
-          onReset={handleReset}
+        ></CountdownControls>
+
+        <CountdownHabitPicker
           habits={habits}
           selectedHabitId={selectedHabitId}
           setSelectedHabitId={setSelectedHabitId}
-          switchMode={handleSwitchMode}
-        ></CountdownControls>
+        ></CountdownHabitPicker>
       </View>
     </View>
   );
@@ -99,20 +108,16 @@ const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      padding: 15,
     },
 
     innerContainer: {
-      width: '100%',
+      width: "100%",
     },
 
-    'container-running': {
+    "container-running": {
       backgroundColor: theme.primary[500],
     },
-    'container-stopped': {
+    "container-stopped": {
       backgroundColor: theme.dark[500],
     },
   });

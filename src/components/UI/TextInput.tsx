@@ -14,7 +14,7 @@ export default function TextInput({
     <Isao
       label={label}
       // this is applied as active border and label color
-      activeColor={theme.primary[700]}
+      activeColor={theme.primary[500]}
       // active border height
       inputStyle={styles.input}
       labelStyle={styles.label}

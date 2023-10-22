@@ -13,6 +13,10 @@ export default function Name(props: Props) {
   return (
     <View style={styles.container}>
       <Text size='h1'>Track Habits</Text>
+      <View style={styles.headingContainer}>
+        <Text style={styles.labelName}>Habit</Text>
+        <Text style={styles.labelRep}> Reps</Text>
+      </View>
       <FlatList
         data={habits}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -29,6 +33,19 @@ const stylesheet = (theme: Theme) =>
       flex: 1,
       padding: 15,
     },
+    headingContainer: {
+      flexDirection: 'row',
+      padding: 15,
+    },
+    labelName: {
+      flex: 1,
+      textAlign: 'left',
+    },
+    labelRep: {
+      flex: 1,
+      textAlign: 'right',
+    },
+
     separator: {
       height: 10,
     },

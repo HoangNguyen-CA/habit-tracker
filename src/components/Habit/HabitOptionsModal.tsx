@@ -50,7 +50,7 @@ export default function HabitOptionsModal(props: Props) {
   return (
     <Modal visible close={props.onHide} style={styles.modal}>
       <Text variant='dark' style={styles.optionsHeader}>
-        Habit Options for '{props.habit.description}'
+        Options for '{props.habit.description}'
       </Text>
 
       <Button
@@ -105,7 +105,7 @@ export default function HabitOptionsModal(props: Props) {
 const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     optionsHeader: {
-      fontSize: 25,
+      fontSize: 32,
     },
 
     modal: {
