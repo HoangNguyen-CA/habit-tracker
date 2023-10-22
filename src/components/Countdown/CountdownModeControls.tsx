@@ -11,25 +11,33 @@ interface Props {
 
 export default function Name(props: Props) {
   const styles = useTheme(stylesheet);
+  const pomodoroActive = props.cdMode === CDMode.pomodoro;
+  const breakActive = props.cdMode === CDMode.break;
   return (
     <View style={styles.modeContainer}>
       <Pressable
         style={[
           styles.modeTextContainer,
-          props.cdMode === CDMode.pomodoro && styles.modeTextContainerActive,
+          pomodoroActive && styles.modeTextContainerActive,
         ]}
         onPress={() => props.switchMode(CDMode.pomodoro)}
       >
-        <Text style={styles.modeText}>Pomodoro</Text>
+        <Text
+          style={[styles.modeText, pomodoroActive && styles.modeTextActive]}
+        >
+          Pomodoro
+        </Text>
       </Pressable>
       <Pressable
         style={[
           styles.modeTextContainer,
-          props.cdMode === CDMode.break && styles.modeTextContainerActive,
+          breakActive && styles.modeTextContainerActive,
         ]}
         onPress={() => props.switchMode(CDMode.break)}
       >
-        <Text style={styles.modeText}>Break</Text>
+        <Text style={[styles.modeText, breakActive && styles.modeTextActive]}>
+          Break
+        </Text>
       </Pressable>
     </View>
   );
@@ -42,15 +50,15 @@ const stylesheet = (theme: Theme) =>
     },
     modeTextContainer: {
       flex: 1,
-      borderWidth: 1,
       padding: 20,
       borderColor: theme.text[500],
     },
     modeTextContainerActive: {
-      backgroundColor: theme.secondary[500],
       borderWidth: 0,
+      borderBottomWidth: 1,
     },
     modeText: {
       textAlign: "center",
     },
+    modeTextActive: {},
   });

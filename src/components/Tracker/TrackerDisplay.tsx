@@ -21,7 +21,7 @@ export default function TrackerDisplay(props: Props) {
 const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     container: {
-      backgroundColor: theme.secondary[500],
+      backgroundColor: theme.primary[500],
       borderRadius: 4,
       flexDirection: "row",
       alignItems: "center",

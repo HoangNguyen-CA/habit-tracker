@@ -1,10 +1,10 @@
-import useTheme from '@/hooks/useTheme';
-import { StyleSheet } from 'react-native';
-import { useState } from 'react';
-import { Habit } from '@/shared/types/habit.interface';
-import { Modal, Text, Button, TextInput } from '../UI';
+import useTheme from "@/hooks/useTheme";
+import { StyleSheet } from "react-native";
+import { useState } from "react";
+import { Habit } from "@/shared/types/habit.interface";
+import { Modal, Text, Button, TextInput } from "../UI";
 
-const DELETE_PROMPT = 'Delete';
+const DELETE_PROMPT = "Delete";
 
 interface Props {
   habit: Habit | null;
@@ -18,8 +18,8 @@ export default function HabitOptionsModal(props: Props) {
 
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
-  const [editValue, setEditValue] = useState('');
-  const [deleteValue, setDeleteValue] = useState('');
+  const [editValue, setEditValue] = useState("");
+  const [deleteValue, setDeleteValue] = useState("");
 
   const handleEdit = () => {
     if (props.habit === null) return;
@@ -36,12 +36,12 @@ export default function HabitOptionsModal(props: Props) {
   };
 
   const handleEditClose = () => {
-    setEditValue('');
+    setEditValue("");
     setEditOpen(false);
   };
 
   const handleDeleteClose = () => {
-    setDeleteValue('');
+    setDeleteValue("");
     setDeleteOpen(false);
   };
 
@@ -49,8 +49,8 @@ export default function HabitOptionsModal(props: Props) {
 
   return (
     <Modal visible close={props.onHide} style={styles.modal}>
-      <Text variant='dark' style={styles.optionsHeader}>
-        Options for '{props.habit.description}'
+      <Text variant="dark" style={styles.optionsHeader}>
+        Modifying '{props.habit.description}'
       </Text>
 
       <Button
@@ -77,7 +77,7 @@ export default function HabitOptionsModal(props: Props) {
         <Text style={styles.smallModalHeader}>Edit Habit Name</Text>
         <TextInput
           value={editValue}
-          label='New Name'
+          label="New Name"
           onChangeText={(val) => setEditValue(val)}
           onSubmitEditing={handleEdit}
         />
@@ -105,13 +105,14 @@ export default function HabitOptionsModal(props: Props) {
 const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     optionsHeader: {
-      fontSize: 32,
+      fontSize: 24,
     },
 
     modal: {
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignItems: "center",
+      justifyContent: "center",
       gap: 15,
+      backgroundColor: theme.light[900],
     },
 
     optionButton: {
@@ -119,9 +120,9 @@ const stylesheet = (theme: Theme) =>
     },
 
     smallModal: {
-      width: '80%',
-      height: 'auto',
-      maxHeight: '95%',
+      width: "80%",
+      height: "auto",
+      maxHeight: "95%",
       backgroundColor: theme.secondary[500],
     },
 

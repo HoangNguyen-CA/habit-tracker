@@ -1,9 +1,9 @@
-import useTheme from '@/hooks/useTheme';
-import { StyleSheet, View } from 'react-native';
-import { Text } from '../UI';
-import { FlatList } from 'react-native-gesture-handler';
-import useHabit from '@/hooks/useHabit';
-import TrackerDisplay from './TrackerDisplay';
+import useTheme from "@/hooks/useTheme";
+import { StyleSheet, View } from "react-native";
+import { Text } from "../UI";
+import { FlatList } from "react-native-gesture-handler";
+import useHabit from "@/hooks/useHabit";
+import TrackerDisplay from "./TrackerDisplay";
 
 interface Props {}
 
@@ -12,7 +12,6 @@ export default function Name(props: Props) {
   const styles = useTheme(stylesheet);
   return (
     <View style={styles.container}>
-      <Text size='h1'>Track Habits</Text>
       <View style={styles.headingContainer}>
         <Text style={styles.labelName}>Habit</Text>
         <Text style={styles.labelRep}> Reps</Text>
@@ -34,16 +33,16 @@ const stylesheet = (theme: Theme) =>
       padding: 15,
     },
     headingContainer: {
-      flexDirection: 'row',
+      flexDirection: "row",
       padding: 15,
     },
     labelName: {
       flex: 1,
-      textAlign: 'left',
+      textAlign: "left",
     },
     labelRep: {
       flex: 1,
-      textAlign: 'right',
+      textAlign: "right",
     },
 
     separator: {

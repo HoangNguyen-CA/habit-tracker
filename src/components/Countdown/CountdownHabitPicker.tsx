@@ -41,6 +41,7 @@ const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     container: {
       flexDirection: "column",
+      padding: 10,
     },
 
     pickerContainer: {

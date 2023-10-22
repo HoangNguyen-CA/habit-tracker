@@ -10,20 +10,19 @@ import useTheme from "@/hooks/useTheme";
 import useHabit from "@/hooks/useHabit";
 
 import CountdownDisplay from "@/components/Countdown/CountdownDisplay";
-import CountdownControls from "@/components/Countdown/CountdownControls";
 import CountdownModeControls from "@/components/Countdown/CountdownModeControls";
 import CountdownHabitPicker from "@/components/Countdown/CountdownHabitPicker";
 
 const MAX_TIME_POMODORO = timeToSeconds({
   hours: 0,
-  minutes: 0,
-  seconds: 5,
+  minutes: 25,
+  seconds: 0,
 });
 
 const MAX_TIME_BREAK = timeToSeconds({
   hours: 0,
-  minutes: 0,
-  seconds: 20,
+  minutes: 5,
+  seconds: 0,
 });
 
 export default function Countdown() {
@@ -87,18 +86,15 @@ export default function Countdown() {
           maxTime={maxTime}
           seconds={seconds}
           countdownState={countdownState}
-        />
-        <CountdownControls
-          countdownState={countdownState}
           onStart={handleStart}
           onPause={handlePause}
-        ></CountdownControls>
+        />
 
         <CountdownHabitPicker
           habits={habits}
           selectedHabitId={selectedHabitId}
           setSelectedHabitId={setSelectedHabitId}
-        ></CountdownHabitPicker>
+        />
       </View>
     </View>
   );
@@ -112,6 +108,9 @@ const stylesheet = (theme: Theme) =>
 
     innerContainer: {
       width: "100%",
+      flex: 1,
+      justifyContent: "space-between",
+      gap: 10,
     },
 
     "container-running": {

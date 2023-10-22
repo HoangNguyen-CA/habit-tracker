@@ -1,16 +1,19 @@
 import { CountdownState } from "@/shared/types/countdownState.interface";
 import { timeToTimeString, secondsToTime } from "@/shared/utils/time.util";
-import { View, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import useTheme from "@/hooks/useTheme";
 import { Text } from "@/components/UI";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { useContext } from "react";
 import { ThemeContext } from "@/context/theme.context";
+import CountdownControls from "@/components/Countdown/CountdownControls";
 
 interface Props {
   seconds: number;
   countdownState: CountdownState;
   maxTime: number;
+  onStart: () => void;
+  onPause: () => void;
 }
 
 export default function CountdownDisplay(props: Props) {
@@ -24,23 +27,29 @@ export default function CountdownDisplay(props: Props) {
     displayString = `${timeString.hours}:${displayString}`;
   }
 
+  const action =
+    props.countdownState === CountdownState.paused ||
+    props.countdownState === CountdownState.stopped
+      ? props.onStart
+      : props.onPause;
+
   const fill = ((props.maxTime - props.seconds) * 100) / props.maxTime;
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={action}>
       <AnimatedCircularProgress
         fill={fill}
         size={300}
         width={10}
         tintColor={theme.light[900]}
-        backgroundColor={theme.light[200]}
       >
         {() => (
           <View>
             <Text style={styles.countdownText}>{displayString}</Text>
+            <CountdownControls countdownState={props.countdownState} />
           </View>
         )}
       </AnimatedCircularProgress>
-    </View>
+    </Pressable>
   );
 }
 

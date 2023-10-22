@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native';
-import useTheme from '@/hooks/useTheme';
-import { useContext } from 'react';
-import { ThemeContext } from '@/context/theme.context';
-import { Isao } from 'react-native-textinput-effects';
+import { StyleSheet } from "react-native";
+import useTheme from "@/hooks/useTheme";
+import { useContext } from "react";
+import { ThemeContext } from "@/context/theme.context";
+import { Isao } from "react-native-textinput-effects";
 
 export default function TextInput({
   label,
@@ -14,7 +14,7 @@ export default function TextInput({
     <Isao
       label={label}
       // this is applied as active border and label color
-      activeColor={theme.primary[500]}
+      activeColor={theme.primary[700]}
       // active border height
       inputStyle={styles.input}
       labelStyle={styles.label}
@@ -28,11 +28,11 @@ export default function TextInput({
 const stylesheet = (theme: Theme) =>
   StyleSheet.create({
     input: {
-      fontFamily: 'Roboto_400Regular',
+      fontFamily: "Roboto_400Regular",
       color: theme.text[500],
     },
     label: {
-      fontFamily: 'Roboto_400Regular',
+      fontFamily: "Roboto_400Regular",
       color: theme.text[500],
     },
   });
