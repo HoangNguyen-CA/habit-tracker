@@ -1,1 +1,1 @@
-# creating a theming system
+Cross-platform mobile app created using React-Native. 
